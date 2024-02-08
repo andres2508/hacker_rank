@@ -41,23 +41,58 @@ public class HelloApplication extends Application {
         // Minimal sum
         List<Integer> minorToMayor = new ArrayList<Integer>(arr);
         minorToMayor.sort(Comparator.naturalOrder());
-        int minimalSum = 0;
+        long minimalSum = 0;
         for (int i = 0; i < minorToMayor.size() - 1; i++) {
             minimalSum += minorToMayor.get(i);
         }
         // Max sum
         List<Integer> maxToMinor = new ArrayList<Integer>(arr);
         maxToMinor.sort(Comparator.reverseOrder());
-        int maxSum = 0;
+        long maxSum = 0;
         for (int i = 0; i < maxToMinor.size() - 1; i++) {
             maxSum += maxToMinor.get(i);
         }
-        System.out.println(minimalSum + ' ' + maxSum);
+        System.out.println(minimalSum + " " + maxSum);
+    }
+
+    // Third exercise
+    public static String timeConversion(String s) {
+        DecimalFormat formatter = new DecimalFormat("00");
+        int hour = Integer.parseInt(s.split(":")[0]);
+        if (s.contains("PM") && hour < 12) {
+            int newHour = hour + 12;
+            return formatter.format(newHour) + s.substring(2, s.length() - 2);
+        } else if (hour == 12 && s.contains("AM")) {
+            return "00" + s.substring(2, s.length() - 2);
+        } else {
+            return s.substring(0, s.length() - 2);
+        }
+    }
+
+    public static int findMedian(List<Integer> arr) {
+        //arr.sort(Comparator::comparingInt);
+        int medianValue = arr.size() / 2;
+        return arr.get(medianValue);
+    }
+
+    public static int lonelyinteger(List<Integer> a) {
+        for (Integer value : a) {
+            long counter = a.stream().filter(it -> it.equals(value)).count();
+            if (counter == 1) {
+                return value;
+            }
+        }
+        return -1;
+    }
+
+    public static int diagonalDifference(List<List<Integer>> arr) {
+
     }
 
 
     public static void main(String[] args) {
         //plusMinus(List.of(-4, 3, -9, 0, 4, 1));
-        miniMaxSum(List.of(1, 2, 3, 4, 5));
+        //miniMaxSum(List.of(256741038, 623958417, 467905213, 714532089, 938071625));
+        timeConversion("12:05:45PM");
     }
 }
