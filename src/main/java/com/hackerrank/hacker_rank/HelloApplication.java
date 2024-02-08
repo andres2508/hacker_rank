@@ -85,14 +85,20 @@ public class HelloApplication extends Application {
         return -1;
     }
 
-    public static int diagonalDifference(List<List<Integer>> arr) {
-
+    public static int changeAds(int base10) {
+        String binary = Integer.toBinaryString(base10);
+        String stringInverted = "";
+        for (int i = binary.length() - 1; i >= 0; i--) {
+            stringInverted += binary.charAt(i);
+        }
+        return Integer.parseInt(stringInverted, 2);
     }
 
 
     public static void main(String[] args) {
         //plusMinus(List.of(-4, 3, -9, 0, 4, 1));
         //miniMaxSum(List.of(256741038, 623958417, 467905213, 714532089, 938071625));
-        timeConversion("12:05:45PM");
+        //timeConversion("12:05:45PM");
+        changeAds(50);
     }
 }
